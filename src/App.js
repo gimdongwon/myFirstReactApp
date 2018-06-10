@@ -50,6 +50,7 @@ class App extends Component {
       });
     }
   };
+
   render() {
     const { todos, newTodoBody } = this.state;
     return (
@@ -69,6 +70,24 @@ class App extends Component {
             return (
               <li className={todo.complete ? "complete" : ""} key={todo.id}>
                 {todo.body}
+                <button
+                  onClick={e => {
+                    this.setState({
+                      todos: todos.map(t => {
+                        const newTodo = {
+                          ...t
+                        };
+                        if (t.id === todo.id) {
+                          newTodo.complete = true;
+                        }
+                        return newTodo;
+                      })
+                    });
+                    {/* todo.id; */}
+                  }}
+                >
+                  finish!
+                </button>
               </li>
             );
           })}
