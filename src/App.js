@@ -83,10 +83,21 @@ class App extends Component {
                         return newTodo;
                       })
                     });
-                    {/* todo.id; */}
+                    {
+                      /* todo.id; */
+                    }
                   }}
                 >
                   finish!
+                </button>
+                <button
+                  onClick={e => {
+                    this.setState({
+                      todos: todos.filter(t => todo.id !== t.id)
+                    });
+                  }}
+                >
+                  delete
                 </button>
               </li>
             );
