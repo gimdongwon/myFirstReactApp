@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
+let count = 0;
 const todos = [
   {
-    id: 1,
+    id: count++,
     body: "React Study",
     complete: true
   },
   {
-    id: 2,
+    id: count++,
     body: "Redux Study",
     complete: false
   }
@@ -17,22 +18,52 @@ class App extends Component {
   state = {
     todos: [
       {
-        id: 1,
+        id: count++,
         body: "React Study",
         complete: true
       },
       {
-        id: 2,
+        id: count++,
         body: "Redux Study",
         complete: false
       }
-    ]
+    ],
+    newTodoBody: ""
+  };
+
+  handleInputChange = e => {
+    this.setState({
+      newTodoBody: e.target.value
+    });
+  };
+
+  handleButtonClick = e => {
+    if (this.state.newTodoBody) {
+      const newTodo = {
+        body: this.state.newTodoBody,
+        complete: false,
+        id: count++
+      };
+      this.setState({
+        todos: [...this.state.todos, newTodo],
+        newTodoBody: ""
+      });
+    }
   };
   render() {
-    const { todos } = this.state;
+    const { todos, newTodoBody } = this.state;
     return (
       <div>
         <h1>ToDoList</h1>
+        <label>
+          새할일
+          <input
+            type="text"
+            value={newTodoBody}
+            onChange={this.handleInputChange}
+          />
+          <button onClick={this.handleButtonClick}>add</button>
+        </label>
         <ul>
           {todos.map(todo => {
             return (
