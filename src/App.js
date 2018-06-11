@@ -1,25 +1,42 @@
 import React, { Component } from "react";
 // import TodoItem from "./components/TodoItem";
 import TodoList from "./components/TodoList";
+import axios from "axios";
 
-let count = 0;
+let count = 1;
+const todoAPI = axios.create({
+  baseURL: "https://zest-magpie.glitch.me/"
+});
+// let count = 0; id를 위한 임시 변수였음
 
 class App extends Component {
   state = {
+    loading: false,
     todos: [
-      {
-        id: count++,
-        body: "React 공부",
-        complete: true
-      },
-      {
-        id: count++,
-        body: "Redux 공부",
-        complete: false
-      }
+      // {
+      //   id: count++,
+      //   body: "React 공부",
+      //   complete: true
+      // },
+      // {
+      //   id: count++,
+      //   body: "Redux 공부",
+      //   complete: false
+      // }
     ],
     newTodoBody: ""
   };
+
+  async componentDidMount() {
+    this.setState({
+      loading: true
+    });
+    const res = await todoAPI.get("/todos");
+    this.setState({
+      todos: res.data,
+      loading: false
+    });
+  }
 
   handleInputChange = e => {
     this.setState({
@@ -63,7 +80,7 @@ class App extends Component {
   };
 
   render() {
-    const { todos, newTodoBody } = this.state;
+    const { todos, newTodoBody, loading } = this.state;
     return (
       <div>
         <h1>할 일 목록</h1>
@@ -76,11 +93,15 @@ class App extends Component {
           />
           <button onClick={this.handleButtonClick}>추가</button>
         </label>
-        <TodoList
-          todos={todos}
-          handleTodoItemComplete={this.handleTodoItemComplete}
-          handleTodoItemDelete={this.handleTodoItemDelete}
-        />
+        {loading ? (
+          <div>loading...</div>
+        ) : (
+          <TodoList
+            todos={todos}
+            handleTodoItemComplete={this.handleTodoItemComplete}
+            handleTodoItemDelete={this.handleTodoItemDelete}
+          />
+        )}
       </div>
     );
   }
