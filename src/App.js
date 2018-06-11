@@ -1,30 +1,18 @@
 import React, { Component } from "react";
 
 let count = 0;
-const todos = [
-  {
-    id: count++,
-    body: "React Study",
-    complete: true
-  },
-  {
-    id: count++,
-    body: "Redux Study",
-    complete: false
-  }
-];
 
 class App extends Component {
   state = {
     todos: [
       {
         id: count++,
-        body: "React Study",
+        body: "React 공부",
         complete: true
       },
       {
         id: count++,
-        body: "Redux Study",
+        body: "Redux 공부",
         complete: false
       }
     ],
@@ -44,6 +32,7 @@ class App extends Component {
         complete: false,
         id: count++
       };
+
       this.setState({
         todos: [...this.state.todos, newTodo],
         newTodoBody: ""
@@ -51,63 +40,78 @@ class App extends Component {
     }
   };
 
+  handleTodoItemComplete = id => {
+    this.setState({
+      todos: this.state.todos.map(t => {
+        const newTodo = {
+          ...t
+        };
+        if (t.id === id) {
+          newTodo.complete = true;
+        }
+        return newTodo;
+      })
+    });
+  };
+
+  handleTodoItemDelete = id => {
+    this.setState({
+      todos: this.state.todos.filter(t => id !== t.id)
+    });
+  };
+
   render() {
     const { todos, newTodoBody } = this.state;
     return (
       <div>
-        <h1>ToDoList</h1>
+        <h1>할 일 목록</h1>
         <label>
-          새할일
+          새 할일
           <input
             type="text"
             value={newTodoBody}
             onChange={this.handleInputChange}
           />
-          <button onClick={this.handleButtonClick}>add</button>
+          <button onClick={this.handleButtonClick}>추가</button>
         </label>
         <ul>
-          {todos.map(todo => {
-            return (
-              <li className={todo.complete ? "complete" : ""} key={todo.id}>
-                {todo.body}
-                <button
-                  onClick={e => {
-                    this.setState({
-                      todos: todos.map(t => {
-                        const newTodo = {
-                          ...t
-                        };
-                        if (t.id === todo.id) {
-                          newTodo.complete = true;
-                        }
-                        return newTodo;
-                      })
-                    });
-                    {
-                      /* todo.id; */
-                    }
-                  }}
-                >
-                  finish!
-                </button>
-                <button
-                  onClick={e => {
-                    this.setState({
-                      todos: todos.filter(t => todo.id !== t.id)
-                    });
-                  }}
-                >
-                  delete
-                </button>
-              </li>
-            );
-          })}
+          {todos.map(todo => (
+            <TodoItem
+              key={todo.id}
+              {...todo}
+              onComplete={this.handleTodoItemComplete}
+              onDelete={this.handleTodoItemDelete}
+            />
+          ))}
         </ul>
       </div>
     );
   }
 }
 
-export default App;
+class TodoItem extends Component {
+  render() {
+    const { id, body, complete, onComplete, onDelete } = this.props;
+    return (
+      <li className={complete ? "complete" : ""} key={id}>
+        {body}
+        <button
+          onClick={e => {
+            onComplete(id);
+          }}
+        >
+          완료
+        </button>
+        <button
+          onClick={e => {
+            onDelete(id);
+          }}
+        >
+          삭제
+        </button>
+      </li>
+    );
+  }
+}
 
-// classNames npm start
+export default App;
