@@ -3,7 +3,12 @@ import TodoItem from "./TodoItem";
 
 export default class TodoList extends React.Component {
   render() {
-    const { todos, handleTodoItemComplete, handleTodoItemDelete } = this.props;
+    const {
+      todos,
+      handleTodoItemComplete,
+      handleTodoItemDelete,
+      handleTodoItemBodyUpdate
+    } = this.props;
     return (
       <ul>
         {todos.map(todo => (
@@ -12,6 +17,7 @@ export default class TodoList extends React.Component {
             {...todo}
             onComplete={handleTodoItemComplete}
             onDelete={handleTodoItemDelete}
+            onBodyUpdate={handleTodoItemBodyUpdate}
           />
         ))}
       </ul>
