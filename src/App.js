@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import TodoList from "./components/TodoList";
 import axios from "axios";
 
-let count = 1;
+// let count = 1;
 const todoAPI = axios.create({
-  baseURL: "https://zest-magpie.glitch.me/"
+  baseURL: process.env.REACT_APP_API_URL
 });
 // let count = 0; id를 위한 임시 변수였음
 
