@@ -99,7 +99,7 @@ export default class TodoPage extends Component {
         ) : (
           <TodoList
             todos={todos}
-            onTodocomplete={this.completeTodo} // 상태랑 상태를 바꾸는 함수
+            onTodoComplete={this.completeTodo} // 상태랑 상태를 바꾸는 함수
             onTodoDelete={this.deleteTodo}
             onTodoBodyUpdate={this.updateTodoBody}
           />

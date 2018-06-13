@@ -6,7 +6,7 @@ export default class App extends React.Component {
   state = {
     page: "login"
   };
-  login = () => {
+  goToTodoPage = () => {
     this.setState({
       page: "logined"
     });
@@ -20,7 +20,7 @@ export default class App extends React.Component {
             <h1>로그인 페이지 입니다</h1>
             id<input type="text" />
             password<input type="password" />
-            <button onClick={this.login}>로그인</button>
+            <button onClick={this.goToTodoPage}>로그인</button>
           </div>
         ) : (
           <div>
