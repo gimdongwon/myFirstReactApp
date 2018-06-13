@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 import TodoList from "../components/TodoList";
 import TodoForm from "../components/TodoForm";
+import todoAPI from "../components/todoAPI";
+// import login from "../components/login";
 
 // let count = 1;
-const todoAPI = axios.create({
-  baseURL: process.env.REACT_APP_API_URL
-});
+// const todoAPI = axios.create({
+//   baseURL: process.env.REACT_APP_API_URL
+// });
 // let count = 0; id를 위한 임시 변수였음
 
 export default class TodoPage extends Component {
