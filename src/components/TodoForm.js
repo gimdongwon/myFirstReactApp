@@ -22,15 +22,17 @@ export default class TodoForm extends React.Component {
   render() {
     const { newTodoBody } = this.state;
     return (
-      <label>
-        새 할일
-        <input
-          type="text"
-          value={newTodoBody}
-          onChange={this.handleInputChange}
-        />
-        <button onClick={this.handleButtonClick}>추가</button>
-      </label>
+      <React.Fragment>
+        <label>
+          새 할일
+          <input
+            type="text"
+            value={newTodoBody}
+            onChange={this.handleInputChange}
+          />
+          <button onClick={this.handleButtonClick}>추가</button>
+        </label>
+      </React.Fragment>
     );
   }
 }

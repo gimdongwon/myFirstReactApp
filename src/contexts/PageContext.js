@@ -1,12 +1,12 @@
 import React from "react";
 
-const { Consumer, Provider } = React.createContext();
+const { Provider, Consumer } = React.createContext();
 
 class PageProvider extends React.Component {
   state = {
     page: "login"
   };
-  goToTodoPage = () => {
+  login = () => {
     this.setState({
       page: "logined"
     });
@@ -14,7 +14,7 @@ class PageProvider extends React.Component {
   render() {
     const value = {
       page: this.state.page,
-      goToTodoPage: this.goToTodoPage
+      login: this.login
     };
     return <Provider value={value}>{this.props.children}</Provider>;
   }

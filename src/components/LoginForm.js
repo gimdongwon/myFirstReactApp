@@ -1,10 +1,6 @@
 import React from "react";
 
-import todoAPI from "./todoAPI";
-import loginPage from "../pages/loginPage";
-import { PageContext } from "../App";
-
-export default class loginForm extends React.Component {
+export default class LoginForm extends React.Component {
   state = {
     username: "",
     password: ""
@@ -28,7 +24,6 @@ export default class loginForm extends React.Component {
   };
 
   render() {
-    const { onLogin } = this.props;
     const { username, password } = this.state;
     return (
       <div>
@@ -49,9 +44,9 @@ export default class loginForm extends React.Component {
         <button onClick={this.handleLoginClick}>로그인</button>
       </div>
     );
-    {
-      /* <PageContext.Consumer>
+    // {
+    /* <PageContext.Consumer>
         {value => ( */
-    }
+    // }
   }
 }
