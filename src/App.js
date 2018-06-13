@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 // import TodoItem from "./components/TodoItem";
 import TodoList from "./components/TodoList";
-import axios from "axios";
+import TodoForm from "./components/TodoForm";
 
 // let count = 1;
 const todoAPI = axios.create({
@@ -12,19 +14,8 @@ const todoAPI = axios.create({
 class App extends Component {
   state = {
     loading: false,
-    todos: [
-      // {
-      //   id: count++,
-      //   body: "React 공부",
-      //   complete: true
-      // },
-      // {
-      //   id: count++,
-      //   body: "Redux 공부",
-      //   complete: false
-      // }
-    ],
-    newTodoBody: ""
+    todos: []
+    // newTodoBody: ""
   };
 
   async componentDidMount() {
@@ -42,16 +33,17 @@ class App extends Component {
     });
   };
 
-  handleInputChange = e => {
-    this.setState({
-      newTodoBody: e.target.value
-    });
-  };
+  // handleInputChange = e => {
+  //   this.setState({
+  //     newTodoBody: e.target.value
+  //   });
+  // };
 
-  handleButtonClick = async e => {
-    if (this.state.newTodoBody) {
+  createTodo = async newTodoBody => {
+    // 할일 추가 할 때 사용 비동기 함수는 promise가 반환된다.
+    if (newTodoBody) {
       const newTodo = {
-        body: this.state.newTodoBody,
+        body: newTodoBody,
         complete: false
       };
       this.setState({
@@ -59,14 +51,15 @@ class App extends Component {
       });
       await todoAPI.post("/todos", newTodo);
       await this.fetchTodos();
-      this.setState({
-        // todos: [...this.state.todos, newTodo],
-        newTodoBody: ""
-      });
+      // this.setState({
+      //    todos: [...this.state.todos, newTodo],
+      //   newTodoBody: ""
+      // });
     }
   };
 
   handleTodoItemBodyUpdate = async (id, body) => {
+    // 할일 변경할때 사용
     this.setState({
       loading: true
     });
@@ -77,6 +70,7 @@ class App extends Component {
   };
 
   handleTodoItemComplete = async id => {
+    // 할일 완료되었을 때 사용
     this.setState({
       loading: true
     });
@@ -87,6 +81,7 @@ class App extends Component {
   };
 
   handleTodoItemDelete = async id => {
+    // 할일 삭제 할때 사용
     this.setState({
       loading: true
     });
@@ -95,25 +90,17 @@ class App extends Component {
   };
 
   render() {
-    const { todos, newTodoBody, loading } = this.state;
+    const { todos, loading } = this.state;
     return (
       <div>
         <h1>할 일 목록</h1>
-        <label>
-          새 할일
-          <input
-            type="text"
-            value={newTodoBody}
-            onChange={this.handleInputChange}
-          />
-          <button onClick={this.handleButtonClick}>추가</button>
-        </label>
+        <TodoForm onCreate={this.createTodo} />
         {loading ? (
           <div>loading...</div>
         ) : (
           <TodoList
             todos={todos}
-            handleTodoItemComplete={this.handleTodoItemComplete}
+            handleTodoItemComplete={this.handleTodoItemComplete} // 상태랑 상태를 바꾸는 함수
             handleTodoItemDelete={this.handleTodoItemDelete}
             handleTodoItemBodyUpdate={this.handleTodoItemBodyUpdate}
           />
