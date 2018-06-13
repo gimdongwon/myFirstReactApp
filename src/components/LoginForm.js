@@ -21,45 +21,37 @@ export default class loginForm extends React.Component {
       password: e.target.value
     });
   };
-  handleLoginClick = onLogin => async e => {
+  handleLoginClick = async e => {
     // 로그인 요청
-    const res = await todoAPI.post("/users/login", {
-      username: this.state.username,
-      password: this.state.password
-    });
-    //localStorage에 토큰 저장
-    localStorage.setItem("token", res.data.token);
-    // page 전환
-    onLogin();
+    const { onLogin } = this.props;
+    onLogin(this.state.username, this.state.password);
   };
 
   render() {
-    // const { onLogin } = this.props;
+    const { onLogin } = this.props;
     const { username, password } = this.state;
     return (
-      <PageContext.Consumer>
-        {value => (
-          <div>
-            <label>
-              id<input
-                type="text"
-                value={username}
-                onChange={this.handleUsernameChange}
-              />
-            </label>
-            <label>
-              password<input
-                type="password"
-                value={password}
-                onChange={this.handlePasswordChange}
-              />
-            </label>
-            <button onClick={this.handleLoginClick(value.goToTodoPage)}>
-              로그인
-            </button>
-          </div>
-        )}
-      </PageContext.Consumer>
+      <div>
+        <label>
+          id<input
+            type="text"
+            value={username}
+            onChange={this.handleUsernameChange}
+          />
+        </label>
+        <label>
+          password<input
+            type="password"
+            value={password}
+            onChange={this.handlePasswordChange}
+          />
+        </label>
+        <button onClick={this.handleLoginClick}>로그인</button>
+      </div>
     );
+    {
+      /* <PageContext.Consumer>
+        {value => ( */
+    }
   }
 }
