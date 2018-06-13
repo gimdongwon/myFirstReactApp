@@ -1,9 +1,7 @@
 import React from "react";
 
 import TodoPage from "./pages/TodoPage";
-import LoginPage from "./pages/loginPage";
-
-import loginForm from "./components/LoginForm";
+import LoginPage from "./pages/LoginPage";
 
 import { PageProvider, PageConsumer } from "./contexts/PageContext";
 import { UserProvider } from "./contexts/UserContext";
@@ -14,7 +12,7 @@ class App extends React.Component {
       <PageProvider>
         <PageConsumer>
           {value => (
-            <UserProvider onLogin={value.goToTodoPage}>
+            <UserProvider onLogin={value.login}>
               {value.page === "login" ? <LoginPage /> : <TodoPage />}
             </UserProvider>
           )}
