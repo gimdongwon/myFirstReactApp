@@ -1,10 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
-export default class loginForm extends React.Component {
-=======
 
 export default class LoginForm extends React.Component {
->>>>>>> 51ad8371ce3a94c24261a0d306c2e52a63f230ab
   state = {
     username: "",
     password: ""
@@ -48,12 +44,5 @@ export default class LoginForm extends React.Component {
         <button onClick={this.handleLoginClick}>로그인</button>
       </div>
     );
-<<<<<<< HEAD
-=======
-    // {
-    /* <PageContext.Consumer>
-        {value => ( */
-    // }
->>>>>>> 51ad8371ce3a94c24261a0d306c2e52a63f230ab
   }
 }
