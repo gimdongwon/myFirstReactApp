@@ -1,6 +1,6 @@
 import React from "react";
 
-const { Consumer, Provider } = React.createContext();
+const { Provider, Consumer } = React.createContext();
 
 class PageProvider extends React.Component {
   state = {

@@ -12,7 +12,7 @@ import todoAPI from "../components/todoAPI";
 // });
 // let count = 0; id를 위한 임시 변수였음
 
-export default class TodoPage extends Component {
+class TodoPage extends Component {
   state = {
     loading: false,
     todos: []
@@ -95,14 +95,17 @@ export default class TodoPage extends Component {
     return (
       <div>
         <h1>할 일 목록</h1>
-        <TodoForm onCreate={this.createTodo} />
+        <TodoForm
+          onCreate={this.createTodo}
+          handleButtonClick={this.handleButtonClick}
+        />
         {loading ? (
           <div>loading...</div>
         ) : (
           <TodoList
             todos={todos}
-            onTodoComplete={this.completeTodo} // 상태랑 상태를 바꾸는 함수
-            onTodoDelete={this.deleteTodo}
+            onTodoComplete={this.completeTodo}
+            onTodoDelete={this.deleteTodo} // 상태랑 상태를 바꾸는 함수
             onTodoBodyUpdate={this.updateTodoBody}
           />
         )}
@@ -110,3 +113,5 @@ export default class TodoPage extends Component {
     );
   }
 }
+
+export default TodoPage;
