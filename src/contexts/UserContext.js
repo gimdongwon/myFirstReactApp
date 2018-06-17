@@ -3,8 +3,8 @@ import todoAPI from "../components/todoAPI";
 
 const { Provider, Consumer } = React.createContext();
 
-export default class UserProvider extends React.Component {
-  handleLoginClick = async (username, password) => {
+class UserProvider extends React.Component {
+  login = async (username, password) => {
     // 로그인 요청
     const res = await todoAPI.post("/users/login", {
       username: username,
