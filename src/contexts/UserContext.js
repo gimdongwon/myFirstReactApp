@@ -14,7 +14,7 @@ class UserProvider extends React.Component {
       //localStorage에 토큰 저장
       localStorage.setItem("token", res.data.token);
       // page 전환
-      this.props.onLogin();
+      // this.props.onLogin();
     } catch (e) {
       if (e.response) {
         if (e.response && e.response.status === 400) {

@@ -10,13 +10,11 @@ class App extends React.Component {
   render() {
     return (
       <PageProvider>
-        <PageConsumer>
-          {value => (
-            <UserProvider onLogin={value.login}>
-              {value.page === "login" ? <LoginPage /> : <TodoPage />}
-            </UserProvider>
-          )}
-        </PageConsumer>
+        <UserProvider>
+          <PageConsumer>
+            {value => (value.page === "login" ? <LoginPage /> : <TodoPage />)}
+          </PageConsumer>
+        </UserProvider>
       </PageProvider>
     );
   }
