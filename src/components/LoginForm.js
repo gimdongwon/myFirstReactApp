@@ -25,7 +25,9 @@ export default class LoginForm extends React.Component {
     // 로그인 요청
     const { onLogin } = this.props;
     e.preventDefault();
-    onLogin(e.target.elements.username.value, e.target.elements.password.value);
+    const username = e.target.elements.username.value;
+    const password = e.target.elements.password.value;
+    onLogin(username, password);
   };
 
   render() {
@@ -34,14 +36,10 @@ export default class LoginForm extends React.Component {
       <form onSubmit={this.handleLoginClick}>
         <div>
           <label>
-            id<input type="text" name="username" ref={this.usernaemeRef} />
+            id<input type="text" name="username" />
           </label>
           <label>
-            password<input
-              type="password"
-              name="password"
-              ref={this.passwordRef}
-            />
+            password<input type="password" name="password" />
           </label>
           <button>로그인</button>
         </div>
