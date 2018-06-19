@@ -4,18 +4,18 @@ import TodoPage from "./pages/TodoPage";
 import LoginPage from "./pages/LoginPage";
 
 import { UserProvider } from "./contexts/UserContext";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { HashRouter, Route, Redirect } from "react-router-dom";
 
 class App extends React.Component {
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <UserProvider>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={LoginPage} />
           <Route path="/todo" component={TodoPage} />
         </UserProvider>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
