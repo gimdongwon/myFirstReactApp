@@ -2,7 +2,8 @@ import React, { Component } from "react";
 // import axios from "axios";
 
 import TodoContainer from "../containers/TodoContainer";
-// import login from "../components/login";
+import LogoutButtonContainer from "../containers/LogoutButtonContainer";
+import TodoProvider from "../contexts/TodoContext";
 
 // let count = 1;
 // const todoAPI = axios.create({
@@ -12,7 +13,12 @@ import TodoContainer from "../containers/TodoContainer";
 class TodoPage extends Component {
   render() {
     // const { todos, loading } = this.state;
-    return <TodoContainer />;
+    return (
+      <TodoProvider>
+        <TodoContainer />
+        <LogoutButtonContainer />
+      </TodoProvider>
+    );
   }
 }
 
