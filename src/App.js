@@ -3,20 +3,28 @@ import React from "react";
 import TodoPage from "./pages/TodoPage";
 import LoginPage from "./pages/LoginPage";
 
-import { PageProvider, PageConsumer } from "./contexts/PageContext";
 import { UserProvider } from "./contexts/UserContext";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 
 class App extends React.Component {
   render() {
     return (
-      <PageProvider>
+      <BrowserRouter>
         <UserProvider>
-          <PageConsumer>
-            {value => (value.page === "login" ? <LoginPage /> : <TodoPage />)}
-          </PageConsumer>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/todos" component={TodoPage} />
         </UserProvider>
-      </PageProvider>
+      </BrowserRouter>
     );
   }
 }
+
+const Home = () =>
+  localStorage.getItem("token") ? (
+    <Redirect to="todos" />
+  ) : (
+    <Redirect to="login" />
+  );
+
 export default App;
