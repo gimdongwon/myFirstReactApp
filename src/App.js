@@ -13,7 +13,7 @@ class App extends React.Component {
         <UserProvider>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={LoginPage} />
-          <Route path="/todos" component={TodoPage} />
+          <Route path="/todo" component={TodoPage} />
         </UserProvider>
       </BrowserRouter>
     );
@@ -22,7 +22,7 @@ class App extends React.Component {
 
 const Home = () =>
   localStorage.getItem("token") ? (
-    <Redirect to="todos" />
+    <Redirect to="todo" />
   ) : (
     <Redirect to="login" />
   );
