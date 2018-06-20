@@ -16,10 +16,8 @@ class UserProvider extends React.Component {
       // page 전환
       // this.propss.onLogin();
     } catch (e) {
-      if (e.response) {
-        if (e.response && e.response.status === 400) {
-          alert("id혹은 password가 일치 하지 않습니다");
-        }
+      if (e.response && e.response.status === 400) {
+        alert("id혹은 password가 일치 하지 않습니다");
       }
     }
   };

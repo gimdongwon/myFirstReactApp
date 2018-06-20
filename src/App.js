@@ -13,7 +13,7 @@ class App extends React.Component {
         <UserProvider>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={LoginPage} />
-          <Route path="/todo" component={TodoPage} />
+          <Route path="/todo" render={() => <TodoPage />} />
         </UserProvider>
       </HashRouter>
     );
