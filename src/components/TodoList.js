@@ -1,5 +1,5 @@
-import React from "react";
-import TodoItem from "./TodoItem";
+import React from 'react';
+import TodoItem from './TodoItem';
 
 export default class TodoList extends React.Component {
   render() {
@@ -7,7 +7,7 @@ export default class TodoList extends React.Component {
       todos,
       onTodoComplete,
       onTodoDelete,
-      onTodoBodyUpdate
+      onTodoBodyUpdate,
     } = this.props;
     return (
       <ul>

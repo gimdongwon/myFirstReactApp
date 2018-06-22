@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class TodoItem extends Component {
   handleBodyClick = e => {
-    const newBody = prompt("새 내용을 입력하라");
+    const newBody = prompt('새 내용을 입력하라');
     const { id, onBodyUpdate } = this.props;
     onBodyUpdate(id, newBody);
   };
@@ -12,11 +12,11 @@ export default class TodoItem extends Component {
       body,
       complete,
       onComplete,
-      onDelete
+      onDelete,
       // onBodyUpdate
     } = this.props;
     return (
-      <li className={complete ? "complete" : ""} key={id}>
+      <li className={complete ? 'complete' : ''} key={id}>
         <span onClick={this.handleBodyClick}>{body}</span>
         <button
           onClick={e => {

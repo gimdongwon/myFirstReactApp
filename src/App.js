@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import TodoPage from "./pages/TodoPage";
-import LoginPage from "./pages/LoginPage";
+import TodoPage from './pages/TodoPage';
+import LoginPage from './pages/LoginPage';
 
-import { UserProvider } from "./contexts/UserContext";
-import { HashRouter, Route, Redirect } from "react-router-dom";
+import { UserProvider } from './contexts/UserContext';
+import { HashRouter, Route, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
   render() {
@@ -21,7 +21,7 @@ class App extends React.Component {
 }
 
 const Home = () =>
-  localStorage.getItem("token") ? (
+  localStorage.getItem('token') ? (
     <Redirect to="todo" />
   ) : (
     <Redirect to="login" />

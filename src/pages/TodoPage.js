@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import axios from "axios";
 
-import TodoContainer from "../containers/TodoContainer";
-import LogoutButtonContainer from "../containers/LogoutButtonContainer";
-import TodoProvider from "../contexts/TodoContext";
-import withAuth from "../hocs/withAuth";
+import TodoContainer from '../containers/TodoContainer';
+import LogoutButtonContainer from '../containers/LogoutButtonContainer';
+import TodoProvider from '../contexts/TodoContext';
+import withAuth from '../hocs/withAuth';
 // let count = 1;
 // const todoAPI = axios.create({
 //   baseURL: process.env.REACT_APP_API_URL
@@ -12,7 +12,7 @@ import withAuth from "../hocs/withAuth";
 // let count = 0; id를 위한 임시 변수였음
 class TodoPage extends Component {
   static defaultProps = {
-    title: "My Title"
+    title: 'My Title',
   };
   render() {
     // const { todos, loading } = this.state;
@@ -27,7 +27,7 @@ class TodoPage extends Component {
 }
 
 TodoPage.defaultProps = {
-  title: "My Title"
+  title: 'My Title',
 };
 
-export default withAuth("/login")(TodoPage);
+export default withAuth('/login')(TodoPage);

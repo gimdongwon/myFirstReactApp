@@ -1,12 +1,12 @@
-import React from "react";
-import todoAPI from "../components/todoAPI";
+import React from 'react';
+import todoAPI from '../components/todoAPI';
 
 const { Provider, Consumer } = React.createContext();
 
 export default class TodoProvider extends React.Component {
   state = {
     loading: false,
-    todos: []
+    todos: [],
     // newTodoBody: ""
   };
 
@@ -16,12 +16,12 @@ export default class TodoProvider extends React.Component {
 
   fetchTodos = async () => {
     this.setState({
-      loading: true
+      loading: true,
     });
-    const res = await todoAPI.get("/todos");
+    const res = await todoAPI.get('/todos');
     this.setState({
       todos: res.data,
-      loading: false
+      loading: false,
     });
   };
 
@@ -36,12 +36,12 @@ export default class TodoProvider extends React.Component {
     if (newTodoBody) {
       const newTodo = {
         body: newTodoBody,
-        complete: false
+        complete: false,
       };
       this.setState({
-        loading: true
+        loading: true,
       });
-      await todoAPI.post("/todos", newTodo);
+      await todoAPI.post('/todos', newTodo);
       await this.fetchTodos();
       // this.setState({
       //    todos: [...this.state.todos, newTodo],
@@ -53,10 +53,10 @@ export default class TodoProvider extends React.Component {
   updateTodoBody = async (id, body) => {
     // 할일 변경할때 사용
     this.setState({
-      loading: true
+      loading: true,
     });
     await todoAPI.patch(`/todos/${id}`, {
-      body
+      body,
     });
     await this.fetchTodos();
   };
@@ -64,10 +64,10 @@ export default class TodoProvider extends React.Component {
   completeTodo = async id => {
     // 할일 완료되었을 때 사용
     this.setState({
-      loading: true
+      loading: true,
     });
     await todoAPI.patch(`/todos/${id}`, {
-      complete: true
+      complete: true,
     });
     await this.fetchTodos();
   };
@@ -75,7 +75,7 @@ export default class TodoProvider extends React.Component {
   deleteTodo = async id => {
     // 할일 삭제 할때 사용
     this.setState({
-      loading: true
+      loading: true,
     });
     await todoAPI.delete(`/todos/${id}`);
     await this.fetchTodos();
@@ -89,7 +89,7 @@ export default class TodoProvider extends React.Component {
       createTodo: this.createTodo,
       deleteTodo: this.deleteTodo,
       updateTodoBody: this.updateTodoBody,
-      completeTodo: this.completeTodo
+      completeTodo: this.completeTodo,
     };
     return <Provider value={value}>{this.props.children}</Provider>;
   }

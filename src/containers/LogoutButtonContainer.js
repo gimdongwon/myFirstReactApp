@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { UserConsumer } from "../contexts/UserContext";
-import { Redirect } from "react-router-dom";
+import { UserConsumer } from '../contexts/UserContext';
+import { Redirect } from 'react-router-dom';
 export default class LogoutButtonContainer extends React.Component {
   state = {
-    success: false
+    success: false,
   };
   render() {
     if (this.state.success) {

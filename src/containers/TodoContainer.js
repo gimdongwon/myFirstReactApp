@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import TodoList from "../components/TodoList";
-import TodoForm from "../components/TodoForm";
-import { TodoConsumer } from "../contexts/TodoContext";
+import TodoList from '../components/TodoList';
+import TodoForm from '../components/TodoForm';
+import { TodoConsumer } from '../contexts/TodoContext';
 
 export default class TodoContainer extends React.Component {
   render() {
@@ -14,7 +14,7 @@ export default class TodoContainer extends React.Component {
           createTodo,
           completeTodo,
           deleteTodo,
-          updateTodoBody
+          updateTodoBody,
         }) => (
           <div>
             <h1>할 일 목록</h1>
@@ -33,5 +33,6 @@ export default class TodoContainer extends React.Component {
         )}
       </TodoConsumer>
     );
+    ('');
   }
 }

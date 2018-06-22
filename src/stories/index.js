@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import { linkTo } from "@storybook/addon-links";
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { linkTo } from '@storybook/addon-links';
 
-import { Button, Welcome } from "@storybook/react/demo";
+import { Button, Welcome } from '@storybook/react/demo';
 
-storiesOf("Welcome", module).add("to Storybook", () => (
+storiesOf('Welcome', module).add('to Storybook', () => (
   <div>Welcome to storyBook dongwon</div>
 ));
 
-storiesOf("Button", module)
-  .add("with text", () => <button>Storybook</button>)
-  .add("with some emoji", () => (
-    <Button onClick={action("clicked")}>
+storiesOf('Button', module)
+  .add('with text', () => <button>Storybook</button>)
+  .add('with some emoji', () => (
+    <Button onClick={action('clicked')}>
       <span role="img" aria-label="so cool">
         😀 😎 👍 💯
       </span>
